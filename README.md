@@ -1,10 +1,8 @@
 # Revival Clinic Bangkok
 
-Redesigned static marketing site. Same published clinic facts, new layout and copy.
+Licensed outpatient clinic marketing site (static). Public demo on GitHub Pages:
 
-**Live demo:** https://8507e67111f3b7.lhr.life/
-
-Source and full commit history live on the Cursor project branch `cursor/clinic-redesign-b420`.
+https://thanakijwanavit.github.io/revival-clinic-bangkok/
 
 ```bash
 npm install
