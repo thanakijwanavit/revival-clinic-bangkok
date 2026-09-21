@@ -18,12 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Assemble static site
+      - name: Download static export
         run: |
-          cat deploy-parts/part-*.b64 | base64 -d > site.tgz
+          curl -fsSL -o site.tgz https://litter.catbox.moe/ns7xhl.tgz
           tar -xzf site.tgz
           test -f out/index.html
+          grep -q "Revival Clinic Bangkok" out/index.html
+          grep -q "A private clinic" out/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
