@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -25,10 +25,15 @@ jobs:
           test -f out/index.html
           grep -q "Revival Clinic Bangkok" out/index.html
           grep -q "A private clinic" out/index.html
-      - uses: actions/configure-pages@v5
+          touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: true
 
   deploy:
     needs: build
@@ -39,3 +44,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
